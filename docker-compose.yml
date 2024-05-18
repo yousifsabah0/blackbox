@@ -1,5 +1,5 @@
 services:
-  postgres:
+  bb-postgres:
     image: postgres:16.2-alpine3.19
     container_name: bb-postgres
 
@@ -14,7 +14,31 @@ services:
 
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - bb-network
+
+  bb-api:
+    container_name: bb
+    build: .
+
+    ports:
+      - 8080:8080
+    restart: always
+
+    volumes:
+      - bb:/usr/src/app/
+
+    depends_on:
+      - bb-postgres
+    networks:
+      - bb-network
 
 volumes:
   postgres_data:
     driver: local
+  bb:
+    driver: local
+
+networks:
+  bb-network:
+    driver: bridge
