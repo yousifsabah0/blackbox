@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16.2-alpine3.19
+    container_name: bb-postgres
+
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+
+    environment:
+      - POSTGRES_DB=blackbox
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=pa55word
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+    driver: local
