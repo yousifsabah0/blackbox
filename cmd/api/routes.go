@@ -32,5 +32,9 @@ func (app *application) routes() http.Handler {
 	// Tokens routes
 	router.HandlerFunc(http.MethodPost, "/api/v1/tokens/auth", app.handleCreateAuthenticationTokenHandler)
 
+	router.HandlerFunc(http.MethodPost, "/api/v1/tokens/password-reset/request", app.handleRequestPasswordReset)
+
+	router.HandlerFunc(http.MethodPut, "/api/v1/tokens/password-reset", app.handleUpdatePassword)
+
 	return app.recoverPanic(app.rateLimit(app.authenticate(router)))
 }
