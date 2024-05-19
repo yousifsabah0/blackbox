@@ -86,6 +86,8 @@ func (app *application) JSON(w http.ResponseWriter, status int, v envelope, head
 		}
 	}
 
+	payload = append(payload, '\n')
+
 	w.Header().Set("content-type", jsonContentType)
 	w.WriteHeader(status)
 	w.Write(payload)
