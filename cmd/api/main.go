@@ -52,7 +52,7 @@ func main() {
 	flag.StringVar(&cfg.env, "env", "development", "")
 	flag.IntVar(&cfg.port, "port", 8080, "")
 
-	flag.StringVar(&cfg.db.dsn, "dns", "postgres://postgres:pa55word@localhost/blackbox?sslmode=disable", "")
+	flag.StringVar(&cfg.db.dsn, "dns", "postgres://postgres:pa55word@bb-postgres:5432/blackbox?sslmode=disable", "")
 
 	flag.Float64Var(&cfg.limiter.rps, "rps", 2, "")
 	flag.IntVar(&cfg.limiter.burst, "burst", 4, "")
